@@ -66,6 +66,12 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        alias: {
+            'icons': path.resolve(__dirname, 'src/icons/index.jsx'),
+            'ui': path.resolve(__dirname, 'src/ui-components/index.jsx')
+        }
+    },
     plugins: _.compact([
         rootHtml,
         extractCSSMod

@@ -10,6 +10,10 @@
   "author": "Sam Smith",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.2",
+    "@fortawesome/fontawesome-free-regular": "^5.0.3",
+    "@fortawesome/fontawesome-free-solid": "^5.0.3",
+    "@fortawesome/react-fontawesome": "0.0.17",
     "babel": "^6.23.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
@@ -29,5 +33,6 @@
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.0"
-  }
+  },
+  "repository": "git@github.com:SamSmith7/holiday-planner.git"
 }
