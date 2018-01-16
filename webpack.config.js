@@ -16,10 +16,11 @@ const extractCSSMod = new ExtractTextPlugin({
 })
 
 module.exports = {
-  entry: './index.jsx',
-  output: {
-    filename: 'bundle.js'
+    entry: './src/app.jsx',
+    output: {
+        filename: 'bundle.js'
     },
+    devtool: 'inline-source-map',
     module: {
         rules: [
             {
@@ -77,21 +78,6 @@ module.exports = {
         extractCSSMod
     ]),
     devServer: {
-        contentBase: './build',
-        https: false,
-        host: '0.0.0.0',
-        port: 3000,
-        filename: 'main.js',
-        hot: false,
-        stats: {
-            assets: false,
-            colors: true,
-            version: false,
-            hash: false,
-            timings: false,
-            chunks: false,
-            chunkModules: false,
-            children: false
-        }
+        contentBase: './dist'
     }
 };

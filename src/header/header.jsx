@@ -1,10 +1,20 @@
 import { Bars } from 'icons'
 import React from 'react'
+import { connect } from 'react-redux'
 
 import styles from './header.mod.scss'
 
+const mapStateToProps = state => {
 
-export default class Header extends React.Component {
+    return {}
+}
+
+const mapDispatchToProps = dispatch => {
+
+    return {}
+}
+
+class Header extends React.Component {
 
     render() {
 
@@ -20,3 +30,5 @@ export default class Header extends React.Component {
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

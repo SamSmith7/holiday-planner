@@ -2,9 +2,9 @@
   "name": "holiday-planner",
   "version": "0.0.1",
   "description": "Holiday Planner Website",
-  "main": "index.js",
+  "main": "src/app.jsx",
   "scripts": {
-    "local": "webpack-dev-server --progress --colors --port 7171",
+    "local": "webpack-dev-server --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sam Smith",
@@ -16,7 +16,9 @@
     "@fortawesome/react-fontawesome": "0.0.17",
     "babel": "^6.23.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -25,6 +27,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "css-loader": "^0.28.8",
+    "eslint": "^4.15.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.7.2",

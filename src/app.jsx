@@ -1,22 +1,20 @@
 import React from 'react'
-import Header from './header/header.jsx'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducers from './reducers/reducers.jsx'
+import Root from './root/root.jsx'
 
-import { Styles } from 'ui'
-import styles from './app.mod.scss'
 
+const store = createStore(reducers)
 
-const app = Styles.CommonModules.app
+const stage = document.createElement('div')
 
-export default class App extends React.Component {
+stage.className = 'stage'
+document.body.appendChild(stage)
 
-    static displayName = 'App'
-
-    render() {
-
-        return (
-            <div className={`${styles.root} ${app.root}`}>
-                <Header />
-            </div>
-        )
-    }
-}
+ReactDOM.render(
+    <Provider store={store}>
+        <Root />
+    </Provider>
+, stage)
