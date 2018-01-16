@@ -18,9 +18,10 @@ const extractCSSMod = new ExtractTextPlugin({
 module.exports = {
     entry: './src/app.jsx',
     output: {
+        path: path.resolve(__dirname, 'dist/'),
         filename: 'bundle.js'
     },
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -30,7 +31,8 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         babelrc: false,
-                        presets: ['env', 'react', 'stage-1']
+                        presets: ['env', 'react', 'stage-1'],
+                        plugins: ['add-module-exports']
                     }
                 }]
             },
@@ -68,6 +70,11 @@ module.exports = {
         ]
     },
     resolve: {
+        modules: [
+            path.resolve(__dirname, 'src'),
+            "node_modules"
+        ],
+        extensions: ['.js', '.jsx', '.json'],
         alias: {
             'icons': path.resolve(__dirname, 'src/icons/index.jsx'),
             'ui': path.resolve(__dirname, 'src/ui-components/index.jsx')
@@ -78,6 +85,16 @@ module.exports = {
         extractCSSMod
     ]),
     devServer: {
-        contentBase: './dist'
+        contentBase: 'dist',
+        stats: {
+            assets: false,
+            colors: true,
+            version: false,
+            hash: false,
+            timings: false,
+            chunks: false,
+            chunkModules: false,
+            children: false
+        }
     }
 };

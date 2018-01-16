@@ -1,7 +1,15 @@
-import headerReducers from './header-reducers.jsx'
+import headerReducers from './header.jsx'
 
 
-export default (state = {}, action) => {
+const initialState = {
+
+    header: {
+        showMenu: false
+    }
+}
+
+
+export default (state = initialState, action) => {
 
     return {
         header: headerReducers(state.header, action)
