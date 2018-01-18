@@ -76,6 +76,7 @@ module.exports = {
         ],
         extensions: ['.js', '.jsx', '.json'],
         alias: {
+            'css-colors': path.resolve(__dirname, 'src/ui-components/styles/colors.mod.scss'),
             'icons': path.resolve(__dirname, 'src/icons/index.jsx'),
             'ui': path.resolve(__dirname, 'src/ui-components/index.jsx')
         }
