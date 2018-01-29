@@ -2,9 +2,9 @@
 $height: 42px;
 
 .root {
+    flex: 0 0 #{$height};
     display: flex;
     justify-content: space-between;
-    height: $height;
 
     background-color: #f9690e;
 }

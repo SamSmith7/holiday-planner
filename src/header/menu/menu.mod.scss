@@ -4,5 +4,6 @@
 .root {
     width: 200px;
 
-    border-right: 1px solid $content;
+    border-right: 1px solid $shade1;
+    background-color: $tint1;
 }

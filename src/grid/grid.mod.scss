@@ -1,0 +1,20 @@
+@import '~css-colors';
+
+
+.root {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+
+.column {
+    flex: 1 1 0;
+    display: flex;
+    height: 100%;
+
+
+    &:not(:last-child) {
+        border-right: 1px solid $tint1;
+    }
+}

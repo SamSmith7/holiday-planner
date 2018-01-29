@@ -3,5 +3,9 @@
 
 // App Styles
 .root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
     font-size: 12px;
 }

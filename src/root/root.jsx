@@ -1,5 +1,7 @@
 import React from 'react'
+import Grid from '../grid/grid.jsx'
 import Header from '../header/header.jsx'
+import People from '../people/people.jsx'
 
 import { Styles } from 'ui'
 import styles from './root.mod.scss'
@@ -16,6 +18,12 @@ export default class App extends React.Component {
         return (
             <div className={`${styles.root} ${app.root}`}>
                 <Header />
+                <div className={styles.main}>
+                    <div className={styles.grid}>
+                        <Grid />
+                    </div>
+                    <People />
+                </div>
             </div>
         )
     }

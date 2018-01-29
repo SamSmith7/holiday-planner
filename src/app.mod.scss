@@ -1,5 +1,7 @@
 
-body {
+html,
+body,
+:global(.stage) {
     height: 100%;
 }
 

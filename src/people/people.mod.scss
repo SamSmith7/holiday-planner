@@ -1,0 +1,9 @@
+@import '~css-colors';
+@import '~css-constants';
+
+
+.root {
+    flex: 0 0 60px;
+    padding: #{$box-size * 1.5} $box-size;
+    border-left: 1px solid $shade1;
+}
