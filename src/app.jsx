@@ -5,6 +5,7 @@ import { createStore } from 'redux'
 import reducers from './reducers/reducers.jsx'
 import Root from './root/root.jsx'
 
+import 'antd/dist/antd.css'
 import styles from './app.mod.scss'
 
 

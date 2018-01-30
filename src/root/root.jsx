@@ -1,5 +1,6 @@
 import React from 'react'
 import Grid from '../grid/grid.jsx'
+import GridControl from '../grid-control/grid-control.jsx'
 import Header from '../header/header.jsx'
 import People from '../people/people.jsx'
 
@@ -20,6 +21,7 @@ export default class App extends React.Component {
                 <Header />
                 <div className={styles.main}>
                     <div className={styles.grid}>
+                        <GridControl />
                         <Grid />
                     </div>
                     <People />
