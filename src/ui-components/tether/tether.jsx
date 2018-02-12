@@ -13,7 +13,7 @@ const resize$ = Rx.Observable.fromEvent(document.body, 'resize')
 const states = {
     entering: { opacity: 0 },
     entered: { opacity: 1 },
-    exiting: { opacity: 1 },
+    exiting: { opacity: 0 },
     exited: { opacity: 0 },
 }
 

@@ -9,6 +9,24 @@ import Header from './components/header.jsx'
 import styles from './grid.mod.scss'
 
 
+const MOCK_DATA = [{
+    end: addDays(new Date(), 3),
+    start: new Date(),
+    type: 'accomodation'
+}]
+
+const MOCK_SECTIONS = [{
+    label: 'Accomodation',
+    uid: 'accomodation'
+}, {
+    label: 'Travel',
+    uid: 'travel'
+}, {
+    label: 'Activites',
+    uid: 'activites'
+}]
+
+
 const mapStateToProps = ({ grid }) => {
 
     return {
@@ -31,6 +49,13 @@ const createRange = (start, end) => {
 
 class Grid extends React.Component {
 
+    static displayName = 'Grid'
+
+    static defaultProps = {
+        data: MOCK_DATA,
+        sections: MOCK_SECTIONS
+    }
+
     state = {
         range: createRange(this.props.start, this.props.end)
     }
@@ -40,15 +65,13 @@ class Grid extends React.Component {
         this.setState({range: createRange(nextProps.start, nextProps.end)})
     }
 
-    columnRenderer = date => {
-
-        const title = format(date, 'dddd Do')
+    sectionRenderer = ({label, uid}) => {
 
         return (
-            <div className={styles.column} key={title}>
-                <Header {...{
-                    title
-                }}/>
+            <div className={styles.section} key={uid}>
+                <span className={styles.label}>
+                    {label}
+                </span>
             </div>
         )
     }
@@ -59,7 +82,8 @@ class Grid extends React.Component {
 
         return (
             <div className={styles.root}>
-                {fp.map(this.columnRenderer, state.range)}
+                <Header range={state.range} />
+                {fp.map(this.sectionRenderer, props.sections)}
             </div>
         )
     }
