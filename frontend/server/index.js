@@ -14,7 +14,7 @@ app.use(mount('/graphql', graphqlHTTP({
     graphiql: true
 })));
 
-app.use(serve('../client/dist'))
+app.use(serve('./dist'))
 
 app.listen(4000);
 console.log('Server Running on Port 4000')
