@@ -1,5 +1,5 @@
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/fontawesome-free-solid'
+import { faPlus } from '@fortawesome/fontawesome-free-solid'
 import React from 'react'
 
 
@@ -12,7 +12,7 @@ export default class Bars extends React.Component {
         return (
             <FontAwesomeIcon {...{
                 className: props.className,
-                icon: faBars,
+                icon: faPlus,
                 size: props.size
             }} />
         )

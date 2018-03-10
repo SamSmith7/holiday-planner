@@ -24,7 +24,6 @@ export default class extends React.Component {
 
         return (
             <div className={styles.root}>
-                <span className={styles.labelSpacer} />
                 {fp.map(this.columnRenderer, this.props.range)}
             </div>
         )

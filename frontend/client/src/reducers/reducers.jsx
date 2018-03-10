@@ -1,3 +1,4 @@
+import addDays from 'date-fns/add_days'
 import gridReducers from './grid.jsx'
 import headerReducers from './header.jsx'
 
@@ -6,7 +7,7 @@ const initialState = {
 
     grid: {
         end: new Date(),
-        start: new Date()
+        start: addDays(new Date(), 7)
     },
 
     header: {

@@ -3,6 +3,9 @@
 
 .root {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-bottom: $box-size;
 }
+
+
+.icon { margin-right: $box-size; }

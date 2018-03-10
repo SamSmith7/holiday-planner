@@ -15,18 +15,6 @@ const MOCK_DATA = [{
     type: 'accomodation'
 }]
 
-const MOCK_SECTIONS = [{
-    label: 'Accomodation',
-    uid: 'accomodation'
-}, {
-    label: 'Travel',
-    uid: 'travel'
-}, {
-    label: 'Activites',
-    uid: 'activites'
-}]
-
-
 const mapStateToProps = ({ grid }) => {
 
     return {
@@ -42,7 +30,7 @@ const mapDispatchToProps = dispatch => {
 
 const createRange = (start, end) => {
 
-    const length = differenceInDays(end, start)
+    const length = differenceInDays(start, end)
 
     return fp.times(i => addDays(start, i), length)
 }
@@ -52,8 +40,7 @@ class Grid extends React.Component {
     static displayName = 'Grid'
 
     static defaultProps = {
-        data: MOCK_DATA,
-        sections: MOCK_SECTIONS
+        data: MOCK_DATA
     }
 
     state = {
@@ -65,17 +52,6 @@ class Grid extends React.Component {
         this.setState({range: createRange(nextProps.start, nextProps.end)})
     }
 
-    sectionRenderer = ({label, uid}) => {
-
-        return (
-            <div className={styles.section} key={uid}>
-                <span className={styles.label}>
-                    {label}
-                </span>
-            </div>
-        )
-    }
-
     render() {
 
         const { props, state } = this
@@ -83,7 +59,6 @@ class Grid extends React.Component {
         return (
             <div className={styles.root}>
                 <Header range={state.range} />
-                {fp.map(this.sectionRenderer, props.sections)}
             </div>
         )
     }

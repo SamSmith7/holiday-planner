@@ -1,7 +1,9 @@
-import { DatePicker } from 'antd'
+import { Button, DatePicker } from 'antd'
 import addDays from 'date-fns/add_days'
 import format from 'date-fns/format'
 import fp from 'lodash/fp'
+import { Plus } from 'icons'
+// import moment from 'moment'
 import React from 'react'
 import { connect } from 'react-redux'
 import { setRange } from '../actions/grid.jsx'
@@ -14,8 +16,9 @@ const RangePicker = DatePicker.RangePicker
 const mapStateToProps = ({ grid }) => {
 
     return {
-        end: grid.length,
-        start: grid.start
+        end: grid.end,
+        start: grid.start,
+        // value: [moment(grid.start), moment(grid.end)],
     }
 }
 
@@ -44,7 +47,14 @@ class GridControl extends React.Component {
 
         return (
             <div className={styles.root}>
-                <RangePicker onChange={this.onChange} />
+                <Button type="primary" >
+                    <Plus className={styles.icon} />
+                    Add
+                </Button>
+                <RangePicker {...{
+                    onChange: this.onChange,
+                    // value: props.value
+                }}/>
             </div>
         )
     }
