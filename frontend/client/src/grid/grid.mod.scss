@@ -2,8 +2,16 @@
 
 
 .root {
+    position: relative;
+
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+}
+
+
+.section {
+    margin-bottom: 1px;
+    min-height: 32px;
 }

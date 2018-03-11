@@ -1,0 +1,35 @@
+@import '~css-colors';
+@import '~css-constants';
+
+
+.root {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    height: 32px;
+
+    color: $tint1;
+}
+
+
+.title {
+    padding-left: $box-size;
+
+    font-style: italic;
+}
+
+
+.accomodation {
+    background-color: $accomodation;
+}
+
+
+.activities {
+    background-color: $activities;
+}
+
+
+.travel {
+    background-color: $travel;
+}

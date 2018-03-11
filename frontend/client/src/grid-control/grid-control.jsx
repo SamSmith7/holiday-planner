@@ -3,7 +3,7 @@ import addDays from 'date-fns/add_days'
 import format from 'date-fns/format'
 import fp from 'lodash/fp'
 import { Plus } from 'icons'
-// import moment from 'moment'
+import moment from 'moment'
 import React from 'react'
 import { connect } from 'react-redux'
 import { setRange } from '../actions/grid.jsx'
@@ -18,7 +18,7 @@ const mapStateToProps = ({ grid }) => {
     return {
         end: grid.end,
         start: grid.start,
-        // value: [moment(grid.start), moment(grid.end)],
+        value: [moment(grid.start), moment(grid.end)],
     }
 }
 
@@ -53,7 +53,7 @@ class GridControl extends React.Component {
                 </Button>
                 <RangePicker {...{
                     onChange: this.onChange,
-                    // value: props.value
+                    value: props.value
                 }}/>
             </div>
         )

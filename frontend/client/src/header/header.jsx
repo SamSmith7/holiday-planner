@@ -1,3 +1,4 @@
+import { Button } from 'antd'
 import { Bars } from 'icons'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -23,22 +24,6 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-class Button extends React.Component {
-
-    static displayName = 'Button'
-
-    render() {
-
-        return (
-            <button onClick={this.props.onClick} style={{width: 30}}>
-                <Bars />
-            </button>
-        )
-    }
-}
-
-const TetheredButton = Tether(Button)
-
 class Header extends React.Component {
 
     static displayName = 'Header'
@@ -55,15 +40,9 @@ class Header extends React.Component {
         return (
             <div className={styles.root}>
                 <div className={styles.left}>
-                    <Button onClick={props.onClick} />
-                    {/* <TetheredButton {...{
-                        componentProps: {
-                            onClick: props.onClick
-                        },
-                        render: props.showMenu
-                    }}>
-                        <Menu />
-                    </TetheredButton> */}
+                    <Button onClick={props.onClick} type="ghost">
+                        <Bars />
+                    </Button>
                     <Modal render={props.showMenu}>
                         <Menu className={styles.menu}/>
                     </Modal>

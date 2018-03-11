@@ -80,6 +80,7 @@ module.exports = {
         ],
         extensions: ['.js', '.jsx', '.json'],
         alias: {
+            'constants': path.resolve(__dirname, 'src/constants/index.jsx'),
             'css-colors': path.resolve(__dirname, 'src/ui-components/styles/colors.mod.scss'),
             'css-constants': path.resolve(__dirname, 'src/ui-components/styles/constants.mod.scss'),
             'icons': path.resolve(__dirname, 'src/icons/index.jsx'),
