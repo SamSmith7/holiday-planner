@@ -8,7 +8,7 @@ const schema = require('./graphql/schema.js');
 
 const app = new Koa();
 
-app.use(mount('/graphql', graphqlHTTP({
+app.use(mount('/api/graphql', graphqlHTTP({
     rootValue: resolver,
     schema,
     graphiql: true

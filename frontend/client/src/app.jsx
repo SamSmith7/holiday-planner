@@ -1,15 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import reducers from './reducers/reducers.jsx'
-import Root from './root/root.jsx'
+import { applyMiddleware, createStore } from 'redux'
+import { createEpicMiddleware } from 'redux-observable'
+import epics from './epics/epics'
+import reducers from './reducers/reducers'
+import Root from './root/root'
 
 import 'antd/dist/antd.css'
 import styles from './app.mod.scss'
 
 
-const store = createStore(reducers)
+const epicMiddleware = createEpicMiddleware(epics)
+const store = createStore(
+    reducers,
+    applyMiddleware(epicMiddleware)
+)
 
 const stage = document.createElement('div')
 

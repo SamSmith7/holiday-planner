@@ -1,6 +1,6 @@
 import differenceInDays from 'date-fns/difference_in_days'
 import fp from 'lodash/fp'
-import { SET_RANGE, SET_WIDTH } from '../actions/grid'
+import { LOG_RESPONSE, SET_RANGE, SET_WIDTH } from '../actions/grid'
 
 
 export default (state, action) => {
@@ -36,6 +36,11 @@ export default (state, action) => {
                 dayWidth: action.width / length
             }
         }
+    }
+
+    if (action.type === LOG_RESPONSE) {
+
+        console.log(action)
     }
 
     return state

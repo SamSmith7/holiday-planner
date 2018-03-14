@@ -6,7 +6,7 @@ import { Plus } from 'icons'
 import moment from 'moment'
 import React from 'react'
 import { connect } from 'react-redux'
-import { setRange } from '../actions/grid.jsx'
+import { setRange, testServer } from '../actions/grid.jsx'
 
 import styles from './grid-control.mod.scss'
 
@@ -25,6 +25,7 @@ const mapStateToProps = ({ grid }) => {
 const mapDispatchToProps = dispatch => {
 
     return {
+        onAdd: () => dispatch(testServer()),
         onChange: range => dispatch(setRange(range))
     }
 }
@@ -47,7 +48,7 @@ class GridControl extends React.Component {
 
         return (
             <div className={styles.root}>
-                <Button type="primary" >
+                <Button type="primary" onClick={props.onAdd}>
                     <Plus className={styles.icon} />
                     Add
                 </Button>

@@ -93,6 +93,9 @@ module.exports = {
     ]),
     devServer: {
         contentBase: 'dist',
+        proxy: {
+            '/api': 'http://localhost:4000',
+        },
         stats: {
             assets: false,
             colors: true,
