@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: holiday-planner
+spec:
+  containers:
+  - name: frontend
+    image: hp-frontend
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 80
+  - name: postgres
+    image: postgres
+    ports:
+    - containerPort: 7000

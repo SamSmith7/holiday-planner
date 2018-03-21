@@ -12,7 +12,7 @@ export default (state, action) => {
 
         const length = differenceInDays(start, end)
         const gridWidth = fp.get('metrics.gridWidth', state)
-        console.log(length)
+
         return {
             ...state,
             end,
