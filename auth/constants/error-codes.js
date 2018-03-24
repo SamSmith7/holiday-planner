@@ -1,15 +1,11 @@
 
 module.exports = {
-    BAD_REQUEST: {
+    'BAD_REQUEST': {
         message: 'Bad Request. Request body should contain a user object',
         status: 400
     },
-    DATABASE_WRITE_ERROR: {
+    'DATABASE_WRITE_ERROR': {
         message: 'Error writing to database',
         status: 500
-    },
-    NOT_AUTHENTICATED: {
-        message: 'Not Authenticated',
-        status: 401
     }
 }

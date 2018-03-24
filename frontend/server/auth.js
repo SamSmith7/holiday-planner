@@ -1,43 +1,32 @@
-const bcrypt = require('bcrypt')
-const passport = require('koa-passport')
-const LocalStrategy = require('passport-local').Strategy
+const jwt = require('jsonwebtoken')
+const fp = require('lodash/fp')
+const Errors = require('./constants/error-codes.js')
 
 
-const options = {}
+const extractToken = token => fp.last(fp.split(' ', token))
 
-module.exports = users => {
+const verify = async (ctx, next) => {
 
-    passport.serializeUser((user, done) => {
+    const token = extractToken(fp.get('headers.authorization', ctx))
 
-        done(null, user.username)
-    })
+    try {
+        ctx.user = await new Promise((resolve, reject) => {
+            jwt.verify(token, 'super-secret-jwt', (err, res) => {
 
-    passport.deserializeUser((username, done) => {
-
-        users.find({username})
-            .toArray((err, docs) => {
-
-                if (err) { return done(err) }
-
-                return done(null, docs[0])
+                if (!err) {
+                    resolve(res)
+                } else {
+                    reject(Errors.NOT_AUTHENTICATED)
+                }
             })
-    })
+        })
+        await next()
+    } catch(err) {
+        ctx.status = 401
+        ctx.body = err
+    }
+}
 
-    passport.use(new LocalStrategy(options, (username, password, done) => {
-
-        users.find({username}).toArray().then(
-            docs => {
-
-                const user = docs[0]
-
-                if (!user) { return done(null, false) }
-
-                bcrypt.compare(password, user.password).then(
-                    () => { done(null, user) },
-                    () => { done(null, false) }
-                )
-            },
-            err => done(err)
-        )
-    }))
+module.exports = {
+    verify
 }
