@@ -3,6 +3,7 @@ const { buildSchema } = require('graphql');
 const schema = buildSchema(`
 
     type User {
+        name: String,
         username: String
     }
 
