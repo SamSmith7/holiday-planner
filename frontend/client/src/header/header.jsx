@@ -1,26 +1,31 @@
 import { Button } from 'antd'
 import { Bars } from 'icons'
+import fp from 'lodash/fp'
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { Modal, Tether } from 'ui'
-import { showMenu } from '../actions/header.jsx'
-import Menu from './menu/menu.jsx'
+import { Modal } from 'ui'
+import { showLogin, showMenu } from '../actions/header'
+import Login from './login/login'
+import Menu from './menu/menu'
 
 import styles from './header.mod.scss'
 
 
-const mapStateToProps = ({ header }) => {
+const mapStateToProps = ({ header, user }) => {
 
     return {
-        showMenu: header.showMenu
+        loggedIn: !fp.isEmpty(user),
+        showLogin: header.showLogin,
+        showMenu: header.showMenu,
+        user
     }
 }
 
 const mapDispatchToProps = dispatch => {
 
     return {
-        onClick: () => dispatch(showMenu())
+        onClick: () => dispatch(showMenu()),
+        onToggleLogin: () => dispatch(showLogin())
     }
 }
 
@@ -48,7 +53,19 @@ class Header extends React.Component {
                     </Modal>
                 </div>
                 <div className={styles.right}>
-                    last logged in: hh:mm
+                    {props.loggedIn && (
+                        `Logged in as: ${fp.get('user.name', props)}`
+                    )}
+                    {!props.loggedIn && (
+                        <React.Fragment>
+                            <Button onClick={props.onToggleLogin}>
+                                Login
+                            </Button>
+                            <Modal render={props.showLogin}>
+                                <Login className={styles.login}/>
+                            </Modal>
+                        </React.Fragment>
+                    )}
                 </div>
             </div>
         )

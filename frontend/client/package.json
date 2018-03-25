@@ -5,7 +5,7 @@
   "main": "src/app.jsx",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "local": "webpack-dev-server --progress --colors",
+    "start": "webpack-dev-server --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sam Smith",
@@ -20,7 +20,6 @@
     "classnames": "^2.2.5",
     "cross-fetch": "^2.1.0",
     "date-fns": "^1.29.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
     "moment": "^2.21.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -33,6 +32,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
@@ -40,6 +40,12 @@
     "babel-preset-stage-1": "^6.24.1",
     "css-loader": "^0.28.8",
     "eslint": "^4.15.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-react": "^7.7.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.7.2",

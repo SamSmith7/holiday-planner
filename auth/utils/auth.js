@@ -1,10 +1,8 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const fp = require('lodash/fp')
-const Router = require('koa-router')
 const passport = require('passport')
 const Errors = require('../constants/error-codes.js')
-const handleError = require('../utils/handle-error.js')
 
 
 const parseUser = user => {
@@ -37,7 +35,11 @@ const login = ctx => {
             ctx.body = {
                 message: 'Logged in successfully',
                 status: 'ok',
-                token: generateToken(user)
+                token: generateToken(user),
+                user: {
+                    name: user.name,
+                    username: user.username
+                }
             }
         } else {
             ctx.status = 401

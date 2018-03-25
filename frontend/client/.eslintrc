@@ -1,0 +1,13 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+        "standard",
+        "plugin:react/recommended"
+    ],
+    "rules": {
+        "indent": ["error", 4],
+        "no-multiple-empty-lines": ["error", { "max": 2 }],
+        "padded-blocks": 0,
+        "space-before-function-paren": 0
+    }
+}

@@ -76,7 +76,7 @@ module.exports = {
     resolve: {
         modules: [
             path.resolve(__dirname, 'src'),
-            "node_modules"
+            'node_modules'
         ],
         extensions: ['.js', '.jsx', '.json'],
         alias: {
@@ -95,6 +95,7 @@ module.exports = {
         contentBase: 'dist',
         proxy: {
             '/api': 'http://localhost:4000',
+            '/auth': 'http://localhost:5000'
         },
         stats: {
             assets: false,
@@ -107,4 +108,4 @@ module.exports = {
             children: false
         }
     }
-};
+}

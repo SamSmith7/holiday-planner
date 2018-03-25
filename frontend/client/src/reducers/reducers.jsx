@@ -1,8 +1,9 @@
 import addDays from 'date-fns/add_days'
 import { EventTypes } from 'constants'
-import eventReducers from './events.jsx'
-import gridReducers from './grid.jsx'
-import headerReducers from './header.jsx'
+import eventReducers from './events'
+import gridReducers from './grid'
+import headerReducers from './header'
+import userReducers from './user'
 
 
 const MOCK_DATA = [{
@@ -28,8 +29,12 @@ const initialState = {
     },
 
     header: {
+        login: {},
+        showLogin: false,
         showMenu: false
-    }
+    },
+
+    user: {}
 }
 
 
@@ -38,6 +43,7 @@ export default (state = initialState, action) => {
     return {
         events: eventReducers(state.events, action),
         grid: gridReducers(state.grid, action),
-        header: headerReducers(state.header, action)
+        header: headerReducers(state.header, action),
+        user: userReducers(state.user, action)
     }
 }

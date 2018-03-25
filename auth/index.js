@@ -15,7 +15,7 @@ const dbConfig = {
 }
 
 const app = new Koa()
-const router = new Router()
+const router = new Router({prefix: '/auth'})
 
 app.keys = ['super-secret-key']
 app.use(session(app))
@@ -40,7 +40,7 @@ db.connect(dbConfig).then(client => {
 
         try {
             await collections.users.insertOne(user)
-        } catch(e) {
+        } catch (e) {
             return handleError(Errors.DATABASE_WRITE_ERROR)
         }
 
@@ -58,6 +58,6 @@ db.connect(dbConfig).then(client => {
     app.use(router.routes())
     app.use(router.allowedMethods())
 
-    app.listen(5000);
+    app.listen(5000)
     console.log('Auth Server Running on Port 5000')
 })

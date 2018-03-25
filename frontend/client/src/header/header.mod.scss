@@ -17,6 +17,13 @@ $height: 42px;
 }
 
 
+.login {
+    position: absolute;
+    top: $height;
+    right: 0;
+}
+
+
 .right,
 .left {
     display: flex;

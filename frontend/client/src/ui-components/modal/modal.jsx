@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import styles from './modal.mod.scss'
+
 
 export default class Modal extends React.Component {
 
@@ -13,8 +15,14 @@ export default class Modal extends React.Component {
 
     render() {
 
+        const children = (
+            <div className={styles.wrapper}>
+                {this.props.children}
+            </div>
+        )
+
         return this.props.render
-            ? ReactDOM.createPortal(this.props.children, this.container)
+            ? ReactDOM.createPortal(children, this.container)
             : null
     }
 }
