@@ -1,16 +1,9 @@
 @import '~css-constants';
 
 
-.root {
+.grid {
     display: flex;
     flex-direction: column;
-
-    font-size: 12px;
-}
-
-
-.main {
-    display: flex;
     flex: 1 1 auto;
-    align-items: stretch;
+    padding: #{$box-size * 1.5};
 }

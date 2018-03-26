@@ -55,11 +55,13 @@ class Login extends React.Component {
         return (
             <div className={className}>
                 <Input {...{
+                    className: styles.input,
                     onChange: this.onChangeUsername,
                     placeholder: 'Username',
                     value: props.username
                 }}/>
                 <Input {...{
+                    className: styles.input,
                     onChange: this.onChangePassword,
                     placeholder: 'Password',
                     type: 'password',

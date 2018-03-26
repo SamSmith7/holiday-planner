@@ -84,7 +84,8 @@ module.exports = {
             'css-colors': path.resolve(__dirname, 'src/ui-components/styles/colors.mod.scss'),
             'css-constants': path.resolve(__dirname, 'src/ui-components/styles/constants.mod.scss'),
             'icons': path.resolve(__dirname, 'src/icons/index.jsx'),
-            'ui': path.resolve(__dirname, 'src/ui-components/index.jsx')
+            'ui': path.resolve(__dirname, 'src/ui-components/index.jsx'),
+            'utils': path.resolve(__dirname, 'src/utils/index.jsx')
         }
     },
     plugins: _.compact([
@@ -93,6 +94,9 @@ module.exports = {
     ]),
     devServer: {
         contentBase: 'dist',
+        historyApiFallback: {
+            index: 'index.html'
+        },
         proxy: {
             '/api': 'http://localhost:4000',
             '/auth': 'http://localhost:5000'

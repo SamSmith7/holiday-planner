@@ -1,4 +1,5 @@
 import addDays from 'date-fns/add_days'
+import { routerReducer } from 'react-router-redux'
 import { EventTypes } from 'constants'
 import eventReducers from './events'
 import gridReducers from './grid'
@@ -34,6 +35,8 @@ const initialState = {
         showMenu: false
     },
 
+    router: {},
+
     user: {}
 }
 
@@ -44,6 +47,7 @@ export default (state = initialState, action) => {
         events: eventReducers(state.events, action),
         grid: gridReducers(state.grid, action),
         header: headerReducers(state.header, action),
+        router: routerReducer(state.router, action),
         user: userReducers(state.user, action)
     }
 }

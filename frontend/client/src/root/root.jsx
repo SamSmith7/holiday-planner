@@ -1,10 +1,9 @@
-import fp from 'lodash/fp'
 import React from 'react'
 import { connect } from 'react-redux'
-import Grid from '../grid/grid.jsx'
-import GridControl from '../grid-control/grid-control.jsx'
-import Header from '../header/header.jsx'
-import People from '../people/people.jsx'
+import { Route, Switch, withRouter } from 'react-router'
+import Header from '../header/header'
+import Home from '../home/home'
+import Trip from '../trip/trip'
 import { Styles } from 'ui'
 
 import styles from './root.mod.scss'
@@ -24,9 +23,9 @@ const mapDispatchToProps = dispatch => {
     return {}
 }
 
-class App extends React.Component {
+class Root extends React.Component {
 
-    static displayName = 'App'
+    static displayName = 'Root'
 
     render() {
 
@@ -36,19 +35,14 @@ class App extends React.Component {
             <div className={`${styles.root} ${app.root}`}>
                 <Header />
                 <div className={styles.main}>
-                    {!fp.isEmpty(props.user) && (
-                        <React.Fragment>
-                            <div className={styles.grid}>
-                                <GridControl />
-                                <Grid />
-                            </div>
-                            <People />
-                        </React.Fragment>
-                    )}
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/trip" component={Trip} />
+                    </Switch>
                 </div>
             </div>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Root))
