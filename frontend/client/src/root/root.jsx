@@ -29,8 +29,6 @@ class Root extends React.Component {
 
     render() {
 
-        const { props } = this
-
         return (
             <div className={`${styles.root} ${app.root}`}>
                 <Header />

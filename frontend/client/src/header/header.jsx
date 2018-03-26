@@ -1,6 +1,7 @@
 import { Button } from 'antd'
 import { Bars } from 'icons'
 import fp from 'lodash/fp'
+import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Modal } from 'ui'
@@ -32,6 +33,14 @@ const mapDispatchToProps = dispatch => {
 class Header extends React.Component {
 
     static displayName = 'Header'
+
+    static propTypes = {
+        isLoggedIn: propTypes.bool,
+        onClick: propTypes.func,
+        onToggleLogin: propTypes.func,
+        showLogin: propTypes.bool,
+        showMenu: propTypes.bool
+    }
 
     componentDidMount() {
 

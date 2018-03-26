@@ -1,4 +1,5 @@
 import fp from 'lodash/fp'
+import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
@@ -23,6 +24,11 @@ export default function requireAuth(Component) {
     class Authenticated extends React.Component {
 
         static displayName = 'Authenticated'
+
+        static propTypes = {
+            isLoggedIn: propTypes.bool,
+            push: propTypes.func
+        }
 
         componentWillMount() {
 

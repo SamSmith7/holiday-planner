@@ -1,5 +1,6 @@
 import format from 'date-fns/format'
 import fp from 'lodash/fp'
+import propTypes from 'prop-types'
 import React from 'react'
 
 import styles from './header.mod.scss'
@@ -8,6 +9,10 @@ import styles from './header.mod.scss'
 export default class extends React.Component {
 
     static displayName = 'Header'
+
+    static propTypes = {
+        range: propTypes.array
+    }
 
     columnRenderer = date => {
 

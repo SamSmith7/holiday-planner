@@ -1,6 +1,7 @@
 import { Button, Input } from 'antd'
 import classnames from 'classnames'
 import fp from 'lodash/fp'
+import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { login, loginDetails } from '../../actions/header'
@@ -27,6 +28,15 @@ const mapDispatchToProps = dispatch => {
 class Login extends React.Component {
 
     static displayName = 'Login'
+
+    static propTypes = {
+        className: propTypes.string,
+        onChangePassword: propTypes.func,
+        onChangeUsername: propTypes.func,
+        onLogin: propTypes.func,
+        password: propTypes.string,
+        username: propTypes.string
+    }
 
     onChangePassword = e => {
 

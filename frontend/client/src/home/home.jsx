@@ -1,4 +1,5 @@
 import { Button } from 'antd'
+import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
@@ -21,6 +22,10 @@ const mapDispatchToProps = dispatch => {
 class Home extends React.Component {
 
     static displayName = 'Home'
+
+    static propTypes = {
+        push: propTypes.func
+    }
 
     onClick = () => {
 

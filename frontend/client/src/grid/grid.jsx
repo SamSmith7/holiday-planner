@@ -1,7 +1,7 @@
 import addDays from 'date-fns/add_days'
 import differenceInDays from 'date-fns/difference_in_days'
-import format from 'date-fns/format'
 import fp from 'lodash/fp'
+import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { ResizeObserver } from 'ui'
@@ -46,6 +46,14 @@ class Grid extends React.Component {
 
     static displayName = 'Grid'
 
+    static propTypes = {
+        events: propTypes.array,
+        end: propTypes.object,
+        length: propTypes.number,
+        onResize: propTypes.func,
+        start: propTypes.object
+    }
+
     state = {
         range: createRange(this.props.start, this.props.end),
         sections: createSections(this.props.events)
@@ -84,7 +92,7 @@ class Grid extends React.Component {
                 componentProps: {
                     className: styles.root
                 },
-                onResize: this.props.onResize
+                onResize: props.onResize
             }}>
                 <Header range={state.range} />
                 {fpMap(this.sectionRenderer, state.sections)}

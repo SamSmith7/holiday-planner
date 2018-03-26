@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import differenceInDays from 'date-fns/difference_in_days'
-import format from 'date-fns/format'
 import fp from 'lodash/fp'
+import propTypes from 'prop-types'
 import React from 'react'
 
 import styles from './event.mod.scss'
@@ -10,6 +10,11 @@ import styles from './event.mod.scss'
 export default class extends React.Component {
 
     static displayName = 'Event'
+
+    static propTypes = {
+        event: propTypes.object,
+        length: propTypes.number
+    }
 
     render() {
 
@@ -26,7 +31,7 @@ export default class extends React.Component {
             fp.get('event.start', props),
             props.gridStart
         )
-        const left = `${(100/ props.length) * offsetInDays}%`
+        const left = `${(100 / props.length) * offsetInDays}%`
 
         return (
             <div {...{
