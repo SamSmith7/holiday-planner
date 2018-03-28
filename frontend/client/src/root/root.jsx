@@ -1,6 +1,8 @@
+import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router'
+import { init } from '../actions/root'
 import Header from '../header/header'
 import Home from '../home/home'
 import Trip from '../trip/trip'
@@ -11,33 +13,54 @@ import styles from './root.mod.scss'
 
 const app = Styles.CommonModules.app
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ root, user }) => {
 
     return {
+        ready: root.ready,
         user
     }
 }
 
 const mapDispatchToProps = dispatch => {
 
-    return {}
+    return {
+        init: () => dispatch(init())
+    }
 }
 
 class Root extends React.Component {
 
     static displayName = 'Root'
 
+    static propTypes = {
+        init: propTypes.func,
+        ready: propTypes.bool,
+        user: propTypes.object
+    }
+
+    componentDidMount() {
+
+        this.props.init()
+    }
+
     render() {
 
         return (
             <div className={`${styles.root} ${app.root}`}>
                 <Header />
-                <div className={styles.main}>
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/trip" component={Trip} />
-                    </Switch>
-                </div>
+                {!this.props.ready && (
+                    <div className={styles.loading}>
+                        Loading...
+                    </div>
+                )}
+                {this.props.ready && (
+                    <div className={styles.main}>
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/trip" component={Trip} />
+                        </Switch>
+                    </div>
+                )}
             </div>
         )
     }

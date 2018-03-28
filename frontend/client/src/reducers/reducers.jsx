@@ -4,6 +4,7 @@ import { EventTypes } from 'constants'
 import eventReducers from './events'
 import gridReducers from './grid'
 import headerReducers from './header'
+import rootReducers from './root'
 import userReducers from './user'
 
 
@@ -35,6 +36,8 @@ const initialState = {
         showMenu: false
     },
 
+    root: { ready: false },
+
     router: {},
 
     user: {}
@@ -47,6 +50,7 @@ export default (state = initialState, action) => {
         events: eventReducers(state.events, action),
         grid: gridReducers(state.grid, action),
         header: headerReducers(state.header, action),
+        root: rootReducers(state.root, action),
         router: routerReducer(state.router, action),
         user: userReducers(state.user, action)
     }
