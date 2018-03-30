@@ -6,6 +6,7 @@ import { init } from '../actions/root'
 import Header from '../header/header'
 import Home from '../home/home'
 import Trip from '../trip/trip'
+import Trips from '../trips/trips'
 import { Styles } from 'ui'
 
 import styles from './root.mod.scss'
@@ -58,6 +59,7 @@ class Root extends React.Component {
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route path="/trip" component={Trip} />
+                            <Route path="/trips" component={Trips} />
                         </Switch>
                     </div>
                 )}

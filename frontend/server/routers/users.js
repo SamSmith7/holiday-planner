@@ -1,5 +1,6 @@
 const fp = require('lodash/fp')
 const Router = require('koa-router')
+const ErrorCodes = require('../constants/error-codes.js')
 
 
 module.exports = users => {
@@ -10,13 +11,13 @@ module.exports = users => {
 
         const body = ctx.request.body
 
-        if (fp.isEmpty(body)) reject(Errors.BAD_REQUEST)
-
         const res = new Promise((resolve, reject) => {
+
+            if (fp.isEmpty(body)) reject(ErrorCodes.badRequest('Request body should contain a user object'))
 
             users.insertOne(body, (err, result) => {
 
-                if (err) reject(Errors.DATABASE_WRITE_ERROR)
+                if (err) reject(ErrorCodes.dbWriteError())
 
                 resolve({
                     message: `${result.ops.length} users written to database`,

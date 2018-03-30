@@ -5,6 +5,7 @@ import eventReducers from './events'
 import gridReducers from './grid'
 import headerReducers from './header'
 import rootReducers from './root'
+import tripsReducers from './trips'
 import userReducers from './user'
 
 
@@ -40,7 +41,9 @@ const initialState = {
 
     router: {},
 
-    user: {}
+    user: {},
+
+    trips: {}
 }
 
 
@@ -52,6 +55,7 @@ export default (state = initialState, action) => {
         header: headerReducers(state.header, action),
         root: rootReducers(state.root, action),
         router: routerReducer(state.router, action),
+        trips: tripsReducers(state.trips, action),
         user: userReducers(state.user, action)
     }
 }

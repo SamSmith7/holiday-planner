@@ -29,7 +29,7 @@ class Home extends React.Component {
 
     onClick = () => {
 
-        this.props.push('/trip')
+        this.props.push('/trips')
     }
 
     render() {
@@ -38,7 +38,7 @@ class Home extends React.Component {
             <div className={styles.root}>
                 Home Page
                 <Button onClick={this.onClick}>
-                    View Test Trip
+                    View Trips
                 </Button>
             </div>
         )
