@@ -3,9 +3,6 @@ import differenceInDays from 'date-fns/difference_in_days'
 import fp from 'lodash/fp'
 import propTypes from 'prop-types'
 import React from 'react'
-import { connect } from 'react-redux'
-import { ResizeObserver } from 'ui'
-import { setWidth } from '../actions/grid.jsx'
 import Event from './components/event.jsx'
 import Header from './components/header.jsx'
 
@@ -13,25 +10,6 @@ import styles from './grid.mod.scss'
 
 
 const fpMap = fp.map.convert({cap: false})
-
-const ResizeDiv = ResizeObserver()
-
-const mapStateToProps = ({ events, grid }) => {
-
-    return {
-        end: grid.end,
-        events,
-        length: grid.length,
-        start: grid.start
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-
-    return {
-        onResize: ({width}) => dispatch(setWidth(width))
-    }
-}
 
 const createRange = (start, end) => {
 
@@ -55,6 +33,7 @@ class Grid extends React.Component {
     }
 
     state = {
+        length: differenceInDays(this.props.end, this.props.start),
         range: createRange(this.props.start, this.props.end),
         sections: createSections(this.props.events)
     }
@@ -62,6 +41,7 @@ class Grid extends React.Component {
     componentWillReceiveProps(nextProps) {
 
         this.setState({
+            length: differenceInDays(nextProps.end, nextProps.start),
             range: createRange(nextProps.start, nextProps.end),
             sections: createSections(nextProps.events)
         })
@@ -75,8 +55,8 @@ class Grid extends React.Component {
                     <Event {...{
                         event,
                         gridStart: this.props.start,
-                        length: this.props.length,
-                        key: event.uid
+                        key: event.uid,
+                        length: this.state.length
                     }} />
                 ), section)}
             </div>
@@ -85,20 +65,15 @@ class Grid extends React.Component {
 
     render() {
 
-        const { props, state } = this
+        const { state } = this
 
         return (
-            <ResizeDiv {...{
-                componentProps: {
-                    className: styles.root
-                },
-                onResize: props.onResize
-            }}>
+            <div className={styles.root} >
                 <Header range={state.range} />
                 {fpMap(this.sectionRenderer, state.sections)}
-            </ResizeDiv>
+            </div>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Grid)
+export default Grid

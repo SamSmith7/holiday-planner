@@ -1,14 +1,17 @@
+import { Card } from 'antd'
+import { format } from 'date-fns'
 import fp from 'lodash/fp'
 import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { Authenticated } from 'utils'
 import { getTrips } from '../actions/trips'
 
 import styles from './trips.mod.scss'
 
 
-const tripQuery = username => (`{ trips(username: "${username}") { end, start, title } }`)
+const tripQuery = username => (`{ trips(username: "${username}") { end, id, start, title } }`)
 
 const mapStateToProps = ({ trips, user }) => {
 
@@ -21,7 +24,8 @@ const mapStateToProps = ({ trips, user }) => {
 const mapDispatchToProps = dispatch => {
 
     return {
-        getTrips: username => dispatch(getTrips(tripQuery(username)))
+        getTrips: username => dispatch(getTrips(tripQuery(username))),
+        goToTrip: id => dispatch(push(`/trip/${id}`))
     }
 }
 
@@ -32,6 +36,7 @@ class Trips extends React.Component {
     static propTypes = {
         allTrips: propTypes.array,
         getTrips: propTypes.func,
+        goToTrip: propTypes.func,
         username: propTypes.string
     }
 
@@ -40,11 +45,30 @@ class Trips extends React.Component {
         this.props.getTrips(this.props.username)
     }
 
+    tripSummary = trip => {
+
+        const end = format(new Date(trip.end), 'DD/MM/YYYY')
+        const start = format(new Date(trip.start), 'DD/MM/YYYY')
+
+        return (
+            <Card {...{
+                className: styles.trip,
+                key: trip.id,
+                onClick: () => this.props.goToTrip(trip.id),
+                title: trip.title
+            }}>
+                {`${start} - ${end}`}
+            </Card>
+        )
+    }
+
     render() {
 
         return (
             <div className={styles.root}>
-                {fp.map('title', this.props.allTrips)}
+                <div className={styles.allTrips}>
+                    {fp.map(this.tripSummary, this.props.allTrips)}
+                </div>
             </div>
         )
     }

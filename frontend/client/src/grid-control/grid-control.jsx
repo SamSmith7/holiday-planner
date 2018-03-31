@@ -3,28 +3,11 @@ import { Plus } from 'icons'
 import moment from 'moment'
 import propTypes from 'prop-types'
 import React from 'react'
-import { connect } from 'react-redux'
-import { setRange, testServer } from '../actions/grid.jsx'
 
 import styles from './grid-control.mod.scss'
 
 
 const RangePicker = DatePicker.RangePicker
-
-const mapStateToProps = ({ grid }) => {
-
-    return {
-        value: [moment(grid.start), moment(grid.end)]
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-
-    return {
-        onAdd: () => dispatch(testServer()),
-        onChange: range => dispatch(setRange(range))
-    }
-}
 
 class GridControl extends React.Component {
 
@@ -32,19 +15,16 @@ class GridControl extends React.Component {
 
     static propTypes = {
         onAdd: propTypes.func,
-        onChange: propTypes.func,
-        value: propTypes.array
+        onRangeChange: propTypes.func
     }
 
     onChange = ([start, end]) => {
 
-        this.props.onChange({
-            end: end ? end.toDate() : null,
-            start: start ? start.toDate() : null
+        this.props.onRangeChange({
+            end: end ? end.toISOString() : null,
+            start: start ? start.toISOString() : null
         })
     }
-
-    onInputClick = e => console.log(e)
 
     render() {
 
@@ -58,11 +38,11 @@ class GridControl extends React.Component {
                 </Button>
                 <RangePicker {...{
                     onChange: this.onChange,
-                    value: props.value
+                    value: [moment(props.start), moment(props.end)]
                 }}/>
             </div>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GridControl)
+export default GridControl

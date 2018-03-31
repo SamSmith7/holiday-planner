@@ -1,4 +1,5 @@
 const Router = require('koa-router')
+const shortid = require('shortid')
 const ErrorCodes = require('../constants/error-codes.js')
 const tripVO = require('../parsers/trip-vo.js')
 const Auth = require('../auth.js')
@@ -10,18 +11,21 @@ module.exports = trips => {
 
     router.post('/', Auth.verify, (ctx, next) => {
 
-        const body = ctx.request.body
+        const parsedBody = tripVO(ctx.request.body)
 
-        const trip = tripVO(body)
-
-        if (trip.error) {
-            const { status, message } = ErrorCodes.badRequest(trip.message)
+        if (parsedBody.error) {
+            const { status, message } = ErrorCodes.badRequest(parsedBody.message)
             ctx.throw(status, message)
+        }
+
+        const trip = {
+            ...parsedBody.data,
+            id: shortid.generate()
         }
 
         const res = new Promise((resolve, reject) => {
 
-            trips.insertOne(trip.data, (err, result) => {
+            trips.insertOne(trip, (err, result) => {
 
                 if (err) reject(ErrorCodes.dbWriteError())
 

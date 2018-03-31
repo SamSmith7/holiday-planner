@@ -1,6 +1,23 @@
+@import '~css-colors';
 @import '~css-constants';
 
 
 .root {
-    
+
+}
+
+
+.all-trips {
+    width: 300px;
+    height: 100%;
+    padding: $box-size;
+
+    border-right: 1px solid $shade2;
+}
+
+
+.trip {
+    margin-bottom: $box-size !important;
+
+    cursor: pointer;
 }

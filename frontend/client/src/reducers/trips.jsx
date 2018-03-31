@@ -12,7 +12,7 @@ export default (state, action) => {
 
         return {
             state,
-            allTrips: fp.get('res.data.trips', action)
+            allTrips: fp.compact(fp.get('res.data.trips', action))
         }
     }
 

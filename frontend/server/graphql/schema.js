@@ -14,6 +14,7 @@ const schema = buildSchema(`
     type Trip {
         end: String,
         events: [Event],
+        id: String!,
         organiserId: String,
         start: String,
         title: String
@@ -26,6 +27,7 @@ const schema = buildSchema(`
 
     type Query {
         hello: String,
+        trip(id: String): Trip,
         trips(username: String): [Trip],
         user(username: String): User,
         users: [User]

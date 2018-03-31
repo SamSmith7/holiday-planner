@@ -20,7 +20,6 @@ export default class extends React.Component {
 
         const { props } = this
 
-        const data = fp.get('event.data', props)
         const eventLength = differenceInDays(
             fp.get('event.end', props),
             fp.get('event.start', props)
@@ -35,11 +34,11 @@ export default class extends React.Component {
 
         return (
             <div {...{
-                className: classnames(styles.root, styles[props.event.type]),
+                className: classnames(styles.root, styles[fp.lowerCase(props.event.type)]),
                 style: {left, width}
             }}>
                 <span className={styles.title}>
-                    {data.title}
+                    {fp.get('event.title', props)}
                 </span>
             </div>
         )

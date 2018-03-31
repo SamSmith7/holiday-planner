@@ -58,7 +58,7 @@ class Root extends React.Component {
                     <div className={styles.main}>
                         <Switch>
                             <Route exact path="/" component={Home} />
-                            <Route path="/trip" component={Trip} />
+                            <Route path="/trip/:id" component={Trip} />
                             <Route path="/trips" component={Trips} />
                         </Switch>
                     </div>
