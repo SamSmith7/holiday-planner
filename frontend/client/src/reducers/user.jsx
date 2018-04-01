@@ -16,7 +16,7 @@ export default (state, action) => {
         return {
             ...state,
             ...(res.user || {}),
-            token: res.token || ''
+            token: fp.get('user.token', res) || ''
         }
     }
 

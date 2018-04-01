@@ -1,8 +1,9 @@
 import { GRAPH_QL_QUERY } from './server'
 
 
-export const GET_TRIP = 'Trips.GetTrip'
-export const SET_RANGE = 'set_range'
+export const GET_TRIP = 'Trip.GetTrip'
+export const SET_RANGE = 'Trip.SetRange'
+export const TRIP_SAVED = 'Trip.TripSaved'
 
 export const getTrip = query => {
 

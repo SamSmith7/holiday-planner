@@ -1,16 +1,20 @@
 import fetch from 'cross-fetch'
+import fp from 'lodash/fp'
 import Rx from 'rxjs/Rx'
 import { API_REQUEST } from '../actions/server'
 
 
-export default actions$ => {
+export default (actions$, store) => {
 
     return actions$.ofType(API_REQUEST)
         .mergeMap(({payload, returnAction, uri}) => {
 
+            const token = fp.get('user.token', store.getState())
+
             const options = {
                 body: JSON.stringify(payload),
                 headers: {
+                    'authorization': `Bearer ${token}`,
                     'content-type': 'application/json'
                 },
                 method: 'POST',

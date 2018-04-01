@@ -2,17 +2,17 @@ const fp = require('lodash/fp')
 const parser = require('../utils/parser.js')
 
 
-const eventVO = raw => {
+const eventVO = (raw, throwOnMissing) => {
 
-    if (!fp.isObject(raw)) { throw new Error('Event should be provided as a json object') }
+    if (throwOnMissing && !fp.isObject(raw)) { throw new Error('Event should be provided as a json object') }
 
-    if (!raw.end) { throw new Error('Event end date not provided') }
+    if (throwOnMissing && !raw.end) { throw new Error('Event end date not provided') }
 
-    if (!raw.start) { throw new Error('Event start date not provided') }
+    if (throwOnMissing && !raw.start) { throw new Error('Event start date not provided') }
 
-    if (!raw.title) { throw new Error('Event title not provided') }
+    if (throwOnMissing && !raw.title) { throw new Error('Event title not provided') }
 
-    if (!raw.type) { throw new Error('Event type not provided') }
+    if (throwOnMissing && !raw.type) { throw new Error('Event type not provided') }
 
     return {
         end: raw.end,

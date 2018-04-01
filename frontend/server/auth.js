@@ -12,19 +12,19 @@ const verify = async (ctx, next) => {
     try {
         ctx.user = await new Promise((resolve, reject) => {
             jwt.verify(token, 'super-secret-jwt', (err, res) => {
-
                 if (!err) {
                     resolve(res)
                 } else {
-                    reject(Errors.NOT_AUTHENTICATED)
+                    reject(Errors.notAuthenticated())
                 }
             })
         })
-        await next()
-    } catch(err) {
+    } catch (err) {
         ctx.status = 401
         ctx.body = err
     }
+
+    await next()
 }
 
 module.exports = {
