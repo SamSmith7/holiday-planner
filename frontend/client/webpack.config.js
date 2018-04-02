@@ -95,7 +95,11 @@ module.exports = {
     devServer: {
         contentBase: 'dist',
         historyApiFallback: {
-            index: 'index.html'
+            index: 'index.html',
+            rewrites: [
+                { from: /\/trip\/bundle.js/, to: '/bundle.js' },
+                { from: /\/trip\/style-mod.css/, to: '/style-mod.css' }
+            ]
         },
         proxy: {
             '/api': 'http://localhost:4000',
