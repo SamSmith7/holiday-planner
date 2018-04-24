@@ -4,11 +4,16 @@ import eventReducers from './events'
 import headerReducers from './header'
 import rootReducers from './root'
 import tripReducers from './trip'
+import eventModalReducers from './event-modal'
 import tripsReducers from './trips'
 import userReducers from './user'
 
 
 const initialState = {
+
+    eventModal: {
+        render: false
+    },
 
     header: {
         login: {},
@@ -31,6 +36,7 @@ const initialState = {
 export default (state = initialState, action) => {
 
     return {
+        eventModal: eventModalReducers(state.eventModal, action),
         events: eventReducers(state.events, action),
         header: headerReducers(state.header, action),
         root: rootReducers(state.root, action),

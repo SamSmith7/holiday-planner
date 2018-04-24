@@ -1,4 +1,5 @@
 const fp = require('lodash/fp')
+const shortid = require('shortid')
 const parser = require('../utils/parser.js')
 
 
@@ -16,6 +17,7 @@ const eventVO = (raw, throwOnMissing) => {
 
     return {
         end: raw.end,
+        id: raw.id || shortid.generate(),
         location: raw.location,
         providerId: raw.providerId,
         start: raw.start,

@@ -1,4 +1,5 @@
 const fp = require('lodash/fp')
+const shortid = require('shortid')
 const parser = require('../utils/parser.js')
 const eventVO = require('./event-vo.js')
 
@@ -24,7 +25,7 @@ const tripVO = (raw, throwOnMissing) => {
     return {
         end: raw.end,
         events: events.data,
-        id: raw.id,
+        id: raw.id || shortid.generate(),
         organiserId: raw.organiserId,
         start: raw.start,
         title: raw.title

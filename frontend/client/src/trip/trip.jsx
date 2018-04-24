@@ -3,7 +3,8 @@ import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Authenticated } from 'utils'
-import { getTrip, setRange } from '../actions/trip'
+import { addEvent, getTrip, setRange } from '../actions/trip'
+import EventModal from '../event-modal/event-modal'
 import Grid from '../grid/grid.jsx'
 import GridControl from '../grid-control/grid-control.jsx'
 import People from '../people/people.jsx'
@@ -44,6 +45,7 @@ const mapDispatchToProps = dispatch => {
 
     return {
         getTrip: id => dispatch(getTrip(tripQuery(id))),
+        onAddEvent: () => dispatch(addEvent()),
         onRangeChange: range => dispatch(setRange(range))
     }
 }
@@ -80,6 +82,7 @@ class Trip extends React.Component {
                 <div className={styles.grid}>
                     <GridControl {...{
                         end: props.end,
+                        onAdd: props.onAddEvent,
                         onRangeChange: props.onRangeChange,
                         start: props.start
                     }}/>
@@ -91,6 +94,7 @@ class Trip extends React.Component {
                     }}/>
                 </div>
                 <People />
+                <EventModal />
             </React.Fragment>
         )
     }

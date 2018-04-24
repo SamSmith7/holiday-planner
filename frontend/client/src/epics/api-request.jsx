@@ -9,10 +9,14 @@ export default (actions$, store) => {
     return actions$.ofType(API_REQUEST)
         .mergeMap(({payload, returnAction, uri}) => {
 
-            const token = fp.get('user.token', store.getState())
+            const currentStore = store.getState()
+            const token = fp.get('user.token', currentStore)
+            const parsedPayload = fp.isFunction(payload)
+                ? payload(currentStore)
+                : payload
 
             const options = {
-                body: JSON.stringify(payload),
+                body: JSON.stringify(parsedPayload),
                 headers: {
                     'authorization': `Bearer ${token}`,
                     'content-type': 'application/json'
@@ -29,6 +33,10 @@ export default (actions$, store) => {
                         ? Rx.Observable.fromPromise(res.json())
                         : Rx.Observable.of({error: true})
                 })
-                .map(res => ({res, type: returnAction}))
+                .map(res => ({
+                    request: payload,
+                    res,
+                    type: returnAction
+                }))
         })
 }

@@ -1,6 +1,6 @@
 
 export default {
     ACCOMODATION: 'accomodation',
-    ACTIVITIES: 'activites',
+    ACTIVITIES: 'activities',
     TRAVEL: 'travel'
 }

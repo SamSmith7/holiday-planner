@@ -1,9 +1,17 @@
 import { GRAPH_QL_QUERY } from './server'
 
 
+export const ADD_EVENT = 'Trip.AddEvent'
 export const GET_TRIP = 'Trip.GetTrip'
 export const SET_RANGE = 'Trip.SetRange'
 export const TRIP_SAVED = 'Trip.TripSaved'
+
+export const addEvent = () => {
+
+    return {
+        type: ADD_EVENT
+    }
+}
 
 export const getTrip = query => {
 

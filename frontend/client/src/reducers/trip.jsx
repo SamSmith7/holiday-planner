@@ -1,4 +1,5 @@
 import fp from 'lodash/fp'
+import { EVENT_ADDED } from '../actions/event-modal'
 import { GET_TRIP, SET_RANGE } from '../actions/trip'
 
 
@@ -22,6 +23,21 @@ export default (state, action) => {
             ...state,
             end,
             start
+        }
+    }
+
+    if (action.type === EVENT_ADDED) {
+        console.log(action)
+        if (fp.get('res.error', action)) {
+            return state
+        }
+        console.log({
+            ...state,
+            events: fp.concat(state.events, action.request)
+        })
+        return {
+            ...state,
+            events: fp.concat(state.events, action.request)
         }
     }
 

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
+import thunk from 'redux-thunk'
 import epics from './epics/epics'
 import reducers from './reducers/reducers'
 import Root from './root/root'
@@ -18,7 +19,7 @@ const history = createHistory()
 const epicMiddleware = createEpicMiddleware(epics)
 const store = createStore(
     reducers,
-    applyMiddleware(epicMiddleware, routerMiddleware(history))
+    applyMiddleware(thunk, epicMiddleware, routerMiddleware(history))
 )
 
 const stage = document.createElement('div')
