@@ -4,6 +4,7 @@ const schema = buildSchema(`
 
     type Event {
         end: String,
+        id: String,
         location: String,
         providerId: String,
         start: String,

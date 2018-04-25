@@ -8,6 +8,7 @@ export default (actions$, store) => {
     return actions$
         .map(() => store.getState())
         .pluck('trip')
+        .map(fp.omit(['events']))
         .distinctUntilChanged(fp.isEqual)
         .debounceTime(1000)
         .filter(trip => trip.id)

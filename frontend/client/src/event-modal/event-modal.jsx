@@ -18,6 +18,7 @@ const mapStateToProps = ({ eventModal }) => {
 
     return {
         end: eventModal.end,
+        isEdit: eventModal.isEdit,
         location: eventModal.location,
         render: eventModal.render,
         start: eventModal.start,
@@ -132,7 +133,7 @@ class EventModal extends React.Component {
                                     Cancel
                                 </Button>
                                 <Button type="primary" onClick={props.onSubmit}>
-                                    Add Event
+                                    {props.isEdit ? 'Update Event' : 'Add Event'}
                                 </Button>
                             </div>
                         </div>

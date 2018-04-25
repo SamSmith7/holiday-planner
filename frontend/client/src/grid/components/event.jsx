@@ -13,7 +13,13 @@ export default class extends React.Component {
 
     static propTypes = {
         event: propTypes.object,
-        length: propTypes.number
+        length: propTypes.number,
+        onEdit: propTypes.func
+    }
+
+    onEdit = () => {
+
+        this.props.onEdit && this.props.onEdit(fp.get('props.event.id', this))
     }
 
     render() {
@@ -35,6 +41,7 @@ export default class extends React.Component {
         return (
             <div {...{
                 className: classnames(styles.root, styles[fp.lowerCase(props.event.type)]),
+                onClick: this.onEdit,
                 style: {left, width}
             }}>
                 <span className={styles.title}>

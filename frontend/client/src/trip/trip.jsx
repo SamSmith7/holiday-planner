@@ -3,7 +3,7 @@ import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Authenticated } from 'utils'
-import { addEvent, getTrip, setRange } from '../actions/trip'
+import { addEvent, editEvent, getTrip, setRange } from '../actions/trip'
 import EventModal from '../event-modal/event-modal'
 import Grid from '../grid/grid.jsx'
 import GridControl from '../grid-control/grid-control.jsx'
@@ -18,6 +18,7 @@ const tripQuery = id => (`
         end,
         events {
             end,
+            id,
             location,
             providerId,
             start,
@@ -46,6 +47,7 @@ const mapDispatchToProps = dispatch => {
     return {
         getTrip: id => dispatch(getTrip(tripQuery(id))),
         onAddEvent: () => dispatch(addEvent()),
+        onEditEvent: id => dispatch(editEvent(id)),
         onRangeChange: range => dispatch(setRange(range))
     }
 }
@@ -89,6 +91,7 @@ class Trip extends React.Component {
                     <Grid {...{
                         events: props.events,
                         end: props.end,
+                        onEditEvent: props.onEditEvent,
                         onResize: props.onResize,
                         start: props.start
                     }}/>

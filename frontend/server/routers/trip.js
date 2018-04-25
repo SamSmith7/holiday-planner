@@ -61,7 +61,64 @@ module.exports = trips => {
                     const err = ErrorCodes.badRequest('The record to update was not found, check the id you supplied.')
                     ctx.throw(err.status, err.message)
                 } else {
-                    ctx.body = { message: `Trip ${id} updated successfully` }
+                    ctx.body = {
+                        event: parsedBody.data,
+                        message: `Trip ${id} updated successfully`
+                    }
+                }
+            },
+            () => {
+                const err = ErrorCodes.dbWriteError()
+                ctx.throw(err.status, err.message)
+            }
+        )
+    })
+
+    router.post('/:id/event/:eventId', Auth.verify, (ctx, next) => {
+
+        const parsedBody = eventVO(ctx.request.body, false)
+
+        if (parsedBody.error) {
+            const { status, message } = ErrorCodes.badRequest(parsedBody.message)
+            ctx.throw(status, message)
+        }
+
+        const id = ctx.params.id
+        const eventId = ctx.params.eventId
+
+        const trip = { $set: { 'events.$': parsedBody.data } }
+
+        return trips.updateOne({ id, 'events.id': eventId }, trip).then(
+            ({ result }) => {
+                if (result.n !== 1) {
+                    const err = ErrorCodes.badRequest('The record to update was not found, check the id you supplied.')
+                    ctx.throw(err.status, err.message)
+                } else {
+                    ctx.body = {
+                        event: parsedBody.data,
+                        message: `Trip ${id} updated successfully`
+                    }
+                }
+            },
+            () => {
+                const err = ErrorCodes.dbWriteError()
+                ctx.throw(err.status, err.message)
+            }
+        )
+    })
+
+    router.delete('/:id/events', Auth.verify, (ctx, next) => {
+
+        const id = ctx.params.id
+        const trip = { $set: { events: [] } }
+
+        return trips.updateOne({ id }, trip).then(
+            ({ result }) => {
+                if (result.n !== 1) {
+                    const err = ErrorCodes.badRequest('The record to update was not found, check the id you supplied.')
+                    ctx.throw(err.status, err.message)
+                } else {
+                    ctx.body = { message: `Events cleared successfully from Trip ${id} updated successfully` }
                 }
             },
             () => {

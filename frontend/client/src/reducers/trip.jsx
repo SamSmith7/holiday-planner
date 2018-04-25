@@ -27,17 +27,14 @@ export default (state, action) => {
     }
 
     if (action.type === EVENT_ADDED) {
-        console.log(action)
+
         if (fp.get('res.error', action)) {
             return state
         }
-        console.log({
-            ...state,
-            events: fp.concat(state.events, action.request)
-        })
+
         return {
             ...state,
-            events: fp.concat(state.events, action.request)
+            events: fp.concat(state.events, fp.get('res.event', action))
         }
     }
 

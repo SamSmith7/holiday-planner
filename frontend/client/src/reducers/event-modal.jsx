@@ -1,5 +1,5 @@
 import { CANCEL_EVENT, EVENT_ADDED, UPDATE_EVENT } from '../actions/event-modal'
-import { ADD_EVENT } from '../actions/trip'
+import { ADD_EVENT, EDIT_EVENT } from '../actions/trip'
 
 
 export default (state, action) => {
@@ -7,7 +7,15 @@ export default (state, action) => {
     if (action.type === ADD_EVENT) {
 
         return {
-            ...state,
+            render: true
+        }
+    }
+
+    if (action.type === EDIT_EVENT) {
+
+        return {
+            ...action.event,
+            isEdit: true,
             render: true
         }
     }

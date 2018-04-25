@@ -4,6 +4,7 @@ import { API_REQUEST } from './server'
 
 const eventPayload = [
     'end',
+    'id',
     'location',
     'start',
     'title',
@@ -29,11 +30,13 @@ export const submitEvent = () => {
         const currentStore = getState()
         const payload = fp.pick(eventPayload, currentStore.eventModal)
 
+        const update = payload.id ? `/${payload.id}` : ''
+
         return dispatch({
             payload,
             returnAction: EVENT_ADDED,
             type: API_REQUEST,
-            uri: `/api/trip/${currentStore.trip.id}/event`
+            uri: `/api/trip/${currentStore.trip.id}/event${update}`
         })
     }
 }

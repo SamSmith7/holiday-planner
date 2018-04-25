@@ -28,6 +28,7 @@ class Grid extends React.Component {
         events: propTypes.array,
         end: propTypes.object,
         length: propTypes.number,
+        onEditEvent: propTypes.func,
         onResize: propTypes.func,
         start: propTypes.object
     }
@@ -56,7 +57,8 @@ class Grid extends React.Component {
                         event,
                         gridStart: this.props.start,
                         key: event.uid,
-                        length: this.state.length
+                        length: this.state.length,
+                        onEdit: this.props.onEditEvent
                     }} />
                 ), section)}
             </div>
