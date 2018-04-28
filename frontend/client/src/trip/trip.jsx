@@ -92,13 +92,14 @@ class Trip extends React.Component {
                 <div className={styles.grid}>
                     <GridControl {...{
                         end: props.end,
-                        onAdd: props.onAddEvent,
                         onRangeChange: props.onRangeChange,
-                        start: props.start
+                        start: props.start,
+                        title: props.title
                     }}/>
                     <Grid {...{
                         events: props.events,
                         end: props.end,
+                        onAdd: props.onAddEvent,
                         onEditEvent: props.onEditEvent,
                         onResize: props.onResize,
                         start: props.start

@@ -32,10 +32,7 @@ class GridControl extends React.Component {
 
         return (
             <div className={styles.root}>
-                <Button type="primary" onClick={props.onAdd}>
-                    <Plus className={styles.icon} />
-                    Add
-                </Button>
+                <h2 className={styles.title}>{props.title}</h2>
                 <RangePicker {...{
                     onChange: this.onChange,
                     value: [moment(props.start), moment(props.end)]

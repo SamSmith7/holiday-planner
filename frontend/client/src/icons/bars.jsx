@@ -13,6 +13,7 @@ export default class Bars extends React.Component {
             <FontAwesomeIcon {...{
                 className: props.className,
                 icon: faBars,
+                onClick: props.onClick,
                 size: props.size
             }} />
         )

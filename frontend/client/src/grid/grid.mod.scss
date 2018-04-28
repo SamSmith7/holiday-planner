@@ -1,4 +1,5 @@
 @import '~css-colors';
+@import '~css-constants';
 
 
 .root {
@@ -9,6 +10,16 @@
     flex-direction: column;
     width: 100%;
 }
+
+
+.add-event {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+
+.icon { margin-right: $box-size; }
 
 
 .section {

@@ -14,7 +14,7 @@ export default (state, action) => {
     if (action.type === EDIT_TRIP) {
 
         return {
-            ...action.event,
+            ...action.trip,
             isEdit: true,
             render: true
         }

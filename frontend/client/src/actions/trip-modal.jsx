@@ -34,9 +34,8 @@ export const submitTrip = () => {
             title: fp.get('tripModal.title', currentStore)
         }
 
-        fp.pick(eventPayload, currentStore.tripModal)
-
-        const update = payload.id ? `/${payload.id}` : ''
+        const id = fp.get('tripModal.id', currentStore)
+        const update = id ? `/${id}` : ''
 
         return dispatch({
             payload,

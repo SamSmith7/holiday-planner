@@ -1,6 +1,7 @@
 import { Button, Card } from 'antd'
 import classnames from 'classnames'
 import { format } from 'date-fns'
+import { Pencil } from 'icons'
 import fp from 'lodash/fp'
 import propTypes from 'prop-types'
 import React from 'react'
@@ -8,7 +9,7 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { Authenticated } from 'utils'
 import { showMenu } from '../../actions/header'
-import { addTrip, getTrips } from '../../actions/trips'
+import { addTrip, editTrip, getTrips } from '../../actions/trips'
 
 import styles from './menu.mod.scss'
 
@@ -30,6 +31,10 @@ const mapDispatchToProps = dispatch => {
             dispatch(addTrip())
             dispatch(showMenu())
         },
+        editTrip: id => {
+            dispatch(editTrip(id))
+            dispatch(showMenu())
+        },
         getTrips: username => dispatch(getTrips(tripQuery(username))),
         goToTrip: id => {
             dispatch(push(`/trip/${id}`))
@@ -44,6 +49,7 @@ class Menu extends React.Component {
 
     static propTypes = {
         allTrips: propTypes.array,
+        editTrip: propTypes.func,
         getTrips: propTypes.func,
         goToTrip: propTypes.func,
         username: propTypes.string
@@ -52,6 +58,11 @@ class Menu extends React.Component {
     componentDidMount() {
 
         this.props.getTrips(this.props.username)
+    }
+
+    editTrip = id => e => {
+        e.stopPropagation()
+        this.props.editTrip(id)
     }
 
     stopPropagation = e => {
@@ -71,7 +82,10 @@ class Menu extends React.Component {
                 onClick: () => this.props.goToTrip(trip.id),
                 title: trip.title
             }}>
-                {`${start} - ${end}`}
+                <div className={styles.tripWrapper}>
+                    {`${start} - ${end}`}
+                    <Pencil onClick={this.editTrip(trip.id)}/>
+                </div>
             </Card>
         )
     }

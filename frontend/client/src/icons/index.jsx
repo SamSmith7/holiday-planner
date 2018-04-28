@@ -1,2 +1,3 @@
-export Bars from './bars.jsx'
-export Plus from './plus.jsx'
+export Bars from './bars'
+export Pencil from './pencil'
+export Plus from './plus'

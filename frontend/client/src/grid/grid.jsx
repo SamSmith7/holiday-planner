@@ -1,3 +1,5 @@
+import { Button } from 'antd'
+import { Plus } from 'icons'
 import addDays from 'date-fns/add_days'
 import differenceInDays from 'date-fns/difference_in_days'
 import fp from 'lodash/fp'
@@ -67,12 +69,18 @@ class Grid extends React.Component {
 
     render() {
 
-        const { state } = this
+        const { props, state } = this
 
         return (
             <div className={styles.root} >
                 <Header range={state.range} />
                 {fpMap(this.sectionRenderer, state.sections)}
+                <div className={styles.addEvent}>
+                    <Button type="primary" onClick={props.onAdd}>
+                        <Plus className={styles.icon} />
+                        Add Event
+                    </Button>
+                </div>
             </div>
         )
     }
