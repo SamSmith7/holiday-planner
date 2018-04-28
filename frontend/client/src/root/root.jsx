@@ -6,6 +6,7 @@ import { init } from '../actions/root'
 import Header from '../header/header'
 import Home from '../home/home'
 import Trip from '../trip/trip'
+import TripModal from '../trip-modal/trip-modal'
 import Trips from '../trips/trips'
 import { Styles } from 'ui'
 
@@ -63,6 +64,7 @@ class Root extends React.Component {
                         </Switch>
                     </div>
                 )}
+                <TripModal />
             </div>
         )
     }

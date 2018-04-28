@@ -1,38 +1,34 @@
 import { Button, DatePicker, Input, Select } from 'antd'
-import { EventTypes } from 'constants'
 import fp from 'lodash/fp'
 import moment from 'moment'
 import propTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Modal } from 'ui'
-import { cancelEvent, submitEvent, updateEvent } from '../actions/event-modal'
+import { cancelTrip, submitTrip, updateTrip } from '../actions/trip-modal'
 
-import styles from './event-modal.mod.scss'
+import styles from './trip-modal.mod.scss'
 
 
-const Option = Select.Option
 const RangePicker = DatePicker.RangePicker
 
-const mapStateToProps = ({ eventModal }) => {
+const mapStateToProps = ({ tripModal }) => {
 
     return {
-        end: eventModal.end,
-        isEdit: eventModal.isEdit,
-        location: eventModal.location,
-        render: eventModal.render,
-        start: eventModal.start,
-        title: eventModal.title,
-        type: eventModal.type
+        end: tripModal.end,
+        isEdit: tripModal.isEdit,
+        render: tripModal.render,
+        start: tripModal.start,
+        title: tripModal.title
     }
 }
 
 const mapDispatchToProps = dispatch => {
 
     return {
-        onCancel: () => dispatch(cancelEvent()),
-        onChange: update => dispatch(updateEvent(update)),
-        onSubmit: () => dispatch(submitEvent())
+        onCancel: () => dispatch(cancelTrip()),
+        onChange: update => dispatch(updateTrip(update)),
+        onSubmit: () => dispatch(submitTrip())
     }
 }
 
@@ -44,12 +40,6 @@ class EventModal extends React.Component {
         onChange: propTypes.func,
         render: propTypes.bool,
         title: propTypes.string
-    }
-
-    onLocationChange = e => {
-
-        const location = fp.get('target.value', e)
-        this.props.onChange({location})
     }
 
     onTimeChange = ([start, end]) => {
@@ -66,11 +56,6 @@ class EventModal extends React.Component {
         this.props.onChange({title})
     }
 
-    onTypeChange = type => {
-
-        this.props.onChange({type})
-    }
-
     render() {
 
         const { props } = this
@@ -82,7 +67,7 @@ class EventModal extends React.Component {
                 <div className={styles.wipe}>
                     <div className={styles.container}>
                         <div className={styles.header}>
-                            {props.isEdit ? 'Edit Event' : 'Add Event'}
+                            {props.isEdit ? 'Edit Trip' : 'New Trip'}
                         </div>
                         <div className={styles.body}>
                             <div className={styles.field}>
@@ -93,30 +78,6 @@ class EventModal extends React.Component {
                                     onChange: this.onTitleChange,
                                     value: props.title
                                 }} />
-                            </div>
-                            <div className={styles.field}>
-                                <span className={styles.label}>
-                                    Location:
-                                </span>
-                                <Input {...{
-                                    onChange: this.onLocationChange,
-                                    value: props.location
-                                }} />
-                            </div>
-                            <div className={styles.field}>
-                                <span className={styles.label}>
-                                    Type:
-                                </span>
-                                <Select {...{
-                                    className: styles.input,
-                                    defaultValue: 'accomodation',
-                                    onChange: this.onTypeChange,
-                                    value: props.type
-                                }}>
-                                    <Option value={EventTypes.ACCOMODATION}>Accomodation</Option>
-                                    <Option value={EventTypes.ACTIVITIES}>Activity</Option>
-                                    <Option value={EventTypes.TRAVEL}>Travel</Option>
-                                </Select>
                             </div>
                             <div className={styles.field}>
                                 <span className={styles.label}>
@@ -133,7 +94,7 @@ class EventModal extends React.Component {
                                     Cancel
                                 </Button>
                                 <Button type="primary" onClick={props.onSubmit}>
-                                    {props.isEdit ? 'Update Event' : 'Add Event'}
+                                    {props.isEdit ? 'Update Trip' : 'Create Trip'}
                                 </Button>
                             </div>
                         </div>

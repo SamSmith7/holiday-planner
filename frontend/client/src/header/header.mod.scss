@@ -7,6 +7,10 @@ $height: 42px;
     justify-content: space-between;
 
     background-color: #f9690e;
+
+    :global(.ant-btn-ghost) {
+        color: #fff;
+    }
 }
 
 

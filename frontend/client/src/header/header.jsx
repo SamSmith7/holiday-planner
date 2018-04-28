@@ -57,7 +57,7 @@ class Header extends React.Component {
                     <Button onClick={props.onClick} type="ghost">
                         <Bars />
                     </Button>
-                    <Modal render={props.showMenu}>
+                    <Modal onClose={props.onClick} render={props.showMenu}>
                         <Menu className={styles.menu}/>
                     </Modal>
                 </div>

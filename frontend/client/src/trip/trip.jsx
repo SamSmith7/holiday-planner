@@ -71,6 +71,14 @@ class Trip extends React.Component {
         if (id) { this.props.getTrip(id) }
     }
 
+    componentWillReceiveProps(nextProps) {
+
+        const oldId = fp.get('props.match.params.id', this)
+        const id = fp.get('match.params.id', nextProps)
+
+        if (id && id !== oldId) { this.props.getTrip(id) }
+    }
+
     render() {
 
         const { props } = this

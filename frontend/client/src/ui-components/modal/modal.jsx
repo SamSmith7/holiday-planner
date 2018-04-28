@@ -16,7 +16,7 @@ export default class Modal extends React.Component {
     render() {
 
         const children = (
-            <div className={styles.wrapper}>
+            <div className={styles.wrapper} onClick={this.props.onClose}>
                 {this.props.children}
             </div>
         )

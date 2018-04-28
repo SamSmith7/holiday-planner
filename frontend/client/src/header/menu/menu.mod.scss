@@ -1,9 +1,23 @@
 @import '~css-colors';
+@import '~css-constants';
 
 
 .root {
-    width: 200px;
+    width: 300px;
+    padding: $box-size;
 
     border-right: 1px solid $shade1;
     background-color: $tint1;
+}
+
+
+.add-trip {
+    width: 100%;
+}
+
+
+.trip {
+    margin-bottom: $box-size !important;
+
+    cursor: pointer;
 }

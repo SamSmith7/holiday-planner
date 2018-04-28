@@ -1,4 +1,4 @@
-import { Card } from 'antd'
+import { Button, Card } from 'antd'
 import { format } from 'date-fns'
 import fp from 'lodash/fp'
 import propTypes from 'prop-types'
@@ -6,7 +6,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { Authenticated } from 'utils'
-import { getTrips } from '../actions/trips'
+import { addTrip, getTrips } from '../actions/trips'
 
 import styles from './trips.mod.scss'
 
@@ -24,6 +24,7 @@ const mapStateToProps = ({ trips, user }) => {
 const mapDispatchToProps = dispatch => {
 
     return {
+        addTrip: () => dispatch(addTrip()),
         getTrips: username => dispatch(getTrips(tripQuery(username))),
         goToTrip: id => dispatch(push(`/trip/${id}`))
     }
@@ -64,10 +65,16 @@ class Trips extends React.Component {
 
     render() {
 
+        const { props } = this
+
         return (
             <div className={styles.root}>
                 <div className={styles.allTrips}>
                     {fp.map(this.tripSummary, this.props.allTrips)}
+                    <Button {...{
+                        onClick: props.addTrip,
+                        type: 'ghost'
+                    }} />
                 </div>
             </div>
         )
